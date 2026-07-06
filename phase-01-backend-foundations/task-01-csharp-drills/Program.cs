@@ -46,10 +46,10 @@ namespace Task01CsharpDrills
                     case "5": Drill05_MaxMinFinder.Execute(); break;
                     case "6": Drill06_WordCounter.Execute(); break;
                     case "7": Drill07_NameFormatter.Execute(); break;
-                    //case "8": Drill08_PasswordStrengthChecker.Execute(); break;
-                    //case "9": Drill09_ShoppingCartTotal.Execute(); break;
-                    //case "10": Drill10_SimpleAtmMenu.Execute(); break;
-                    //case "11": Drill11_DuplicateNumberDetector.Execute(); break;
+                    case "8": Drill08_PasswordStrengthChecker.Execute(); break;
+                    case "9": Drill09_ShoppingCartTotal.Execute(); break;
+                    case "10": Drill10_SimpleAtmMenu.Execute(); break;
+                    case "11": Drill11_DuplicateNumberDetector.Execute(); break;
                     case "12": Drill12_EmailValidator.Execute(); break;
                     case "13": Drill13_PalindromeChecker.Execute(); break;
                     case "14": Drill14_SimpleExpenseTracker.Execute(); break;
@@ -57,7 +57,7 @@ namespace Task01CsharpDrills
                     case "16": Drill16_FrequencyCounter.Execute(); break;
                     case "17": Drill17_SimpleSearchEngine.Execute(); break;
                     case "18": Drill18_NumberStatistics.Execute(); break;
-                    case "19": Drill19_TicketPriceCalculator.Execute(); break;
+                    case "19": Drill19_SimpleTicketPriceCalculator.Execute(); break;
                     case "20": Drill20_MethodRefactoringChallenge.Execute(); break;
                     case "0":
                         exit = true;
