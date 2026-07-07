@@ -86,5 +86,10 @@ namespace BankAccountSystem.Services
             }
             Console.WriteLine("------------------------------------------");
         }
+
+        public List<BankAccount> GetAllAccounts()
+        {
+            return _accounts.ToList();
+        }
     }
 }

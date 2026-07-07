@@ -21,15 +21,16 @@ namespace BankAccountSystem.UI
             bool exit = false;
             while (!exit)
             {
-                Console.WriteLine("\n=== Bank Account System ===");
-                Console.WriteLine("1. Create Customer");
-                Console.WriteLine("2. Create Account");
-                Console.WriteLine("3. Deposit");
-                Console.WriteLine("4. Withdraw");
-                Console.WriteLine("5. Transfer");
-                Console.WriteLine("6. Print Statement");
-                Console.WriteLine("7. Exit");
-                Console.Write("Select an option: ");
+                Console.WriteLine("\n====== TechMaster Bank System ======");
+                Console.WriteLine("1. Create Customer Account");
+                Console.WriteLine("2. Deposit Money");
+                Console.WriteLine("3. Withdraw Money");
+                Console.WriteLine("4. Transfer Money");
+                Console.WriteLine("5. View Account Details");
+                Console.WriteLine("6. View Transaction History");
+                Console.WriteLine("7. View All Accounts");
+                Console.WriteLine("8. Exit");
+                Console.Write("Choose an option: ");
 
                 var input = Console.ReadLine();
 
@@ -38,24 +39,27 @@ namespace BankAccountSystem.UI
                     switch (input)
                     {
                         case "1":
-                            CreateCustomerUI();
+                            CreateCustomerAccountUI();
                             break;
                         case "2":
-                            CreateAccountUI();
+                            DepositMoneyUI();
                             break;
                         case "3":
-                            DepositUI();
+                            WithdrawMoneyUI();
                             break;
                         case "4":
-                            WithdrawUI();
+                            TransferMoneyUI();
                             break;
                         case "5":
-                            TransferUI();
+                            ViewAccountDetailsUI();
                             break;
                         case "6":
-                            PrintStatementUI();
+                            ViewTransactionHistoryUI();
                             break;
                         case "7":
+                            ViewAllAccountsUI();
+                            break;
+                        case "8":
                             exit = true;
                             Console.WriteLine("Goodbye!");
                             break;
@@ -71,7 +75,7 @@ namespace BankAccountSystem.UI
             }
         }
 
-        private void CreateCustomerUI()
+        private void CreateCustomerAccountUI()
         {
             Console.Write("Enter Full Name: ");
             string name = Console.ReadLine();
@@ -82,13 +86,6 @@ namespace BankAccountSystem.UI
 
             var customer = _bankService.CreateCustomer(name, email, phone);
             Console.WriteLine($"Customer created successfully with ID: {customer.Id}");
-        }
-
-        private void CreateAccountUI()
-        {
-            Console.Write("Enter Customer Name (will create a new customer for this account): ");
-            string name = Console.ReadLine();
-            var customer = _bankService.CreateCustomer(name, "unknown@example.com", "0000000000");
 
             Console.WriteLine("Select Account Type (1: Checking, 2: Savings, 3: Business): ");
             string typeInput = Console.ReadLine();
@@ -108,7 +105,7 @@ namespace BankAccountSystem.UI
             }
         }
 
-        private void DepositUI()
+        private void DepositMoneyUI()
         {
             Console.Write("Enter Account Number: ");
             string accNum = Console.ReadLine();
@@ -124,7 +121,7 @@ namespace BankAccountSystem.UI
             }
         }
 
-        private void WithdrawUI()
+        private void WithdrawMoneyUI()
         {
             Console.Write("Enter Account Number: ");
             string accNum = Console.ReadLine();
@@ -140,7 +137,7 @@ namespace BankAccountSystem.UI
             }
         }
 
-        private void TransferUI()
+        private void TransferMoneyUI()
         {
             Console.Write("Enter From Account Number: ");
             string fromAcc = Console.ReadLine();
@@ -158,11 +155,58 @@ namespace BankAccountSystem.UI
             }
         }
 
-        private void PrintStatementUI()
+        private void ViewAccountDetailsUI()
         {
             Console.Write("Enter Account Number: ");
             string accNum = Console.ReadLine();
-            _bankService.PrintStatement(accNum);
+            var account = _bankService.GetAccount(accNum);
+            if (account != null)
+            {
+                Console.WriteLine($"\n--- Account Details ---");
+                Console.WriteLine($"Account Number: {account.AccountNumber}");
+                Console.WriteLine($"Owner: {account.AccountOwner.FullName}");
+                Console.WriteLine($"Type: {account.Type}");
+                Console.WriteLine($"Balance: {account.Balance:C}");
+            }
+            else
+            {
+                Console.WriteLine("Account not found.");
+            }
+        }
+
+        private void ViewTransactionHistoryUI()
+        {
+            Console.Write("Enter Account Number: ");
+            string accNum = Console.ReadLine();
+            var account = _bankService.GetAccount(accNum);
+            if (account != null)
+            {
+                Console.WriteLine($"\n--- Transaction History for Account: {account.AccountNumber} ---");
+                foreach (var t in account.Transactions)
+                {
+                    Console.WriteLine($"[{t.TransactionDate}] {t.Type} - {t.Amount:C} | Balance: {t.BalanceAfter:C} | {t.Description}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Account not found.");
+            }
+        }
+
+        private void ViewAllAccountsUI()
+        {
+            var accounts = _bankService.GetAllAccounts();
+            if (accounts.Count == 0)
+            {
+                Console.WriteLine("No accounts found.");
+                return;
+            }
+
+            Console.WriteLine("\n--- All Accounts ---");
+            foreach (var account in accounts)
+            {
+                Console.WriteLine($"Account: {account.AccountNumber} | Owner: {account.AccountOwner.FullName} | Type: {account.Type} | Balance: {account.Balance:C}");
+            }
         }
     }
 }

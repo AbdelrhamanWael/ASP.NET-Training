@@ -4,13 +4,12 @@ A simple console-based banking application built with C# and .NET. This project 
 
 ## Features
 
-- **Customer Management**: Create new customers with their personal details.
-- **Account Management**: Create different types of accounts (Checking, Savings, Business) linked to specific customers.
-- **Transactions**: Perform basic banking operations:
-  - Deposit funds into an account.
-  - Withdraw funds (with validation to prevent overdrafts).
-  - Transfer funds securely between two accounts.
-- **Account Statements**: Generate and view a comprehensive statement displaying an account's current balance, owner details, and a full transaction history.
+- **Customer & Account Creation**: Seamlessly create new customers and associate different account types (Checking, Savings, Business) in one workflow.
+- **Deposit & Withdraw Funds**: Perform basic transactions with validation to ensure sufficient balances.
+- **Fund Transfers**: Securely transfer money between any two existing accounts.
+- **View Account Details**: Quickly view current balance and ownership details for a specific account.
+- **View Transaction History**: Access a complete historical log of all activities on an account.
+- **View All Accounts**: Display a summarized list of all active accounts in the system.
 
 ## Project Structure
 
