@@ -1,0 +1,90 @@
+
+Section 1: Object-Oriented Programming (OOP) C#
+1. What is the difference between class and object?
+    class : is a set or category of thing  have the same property.
+    object : is actual thing built from class or sprcific entity , object allow to access class data.
+
+
+2. What is encapsulation? 
+    hiding private or internal data , restrict access to some component that ensure controlled interaction with objects
+
+
+3. Why should account balance not be public?
+    if it public any part of code can change it directly , By Keeping it private we force program to usse safe method.
+
+
+4. What is the difference between field and property?
+    field is the basic variable used to store data , property is a wrapper around field that allow you to add rules about who can read or change the data.
+
+
+5. Why do we use constructors?  
+    special Methods that run exactly when object is created , use them to force an obejct to start with required Data
+
+
+Section 2: Application Architecture
+6. What is the purpose of a service class?
+    Service class holds business Logic and data management it separates heavy func and logic from user interface.
+
+
+7. Why should we avoid huge Main methods?
+    because it make code unreadable nightmare to test and debug
+
+
+Section 3: Collections & LINQ
+
+8. What is the difference between List and Array?
+    array have fixed size once it created , list are dynamic the can automatic grow or shrink as you need.
+
+9. When would you use Dictionary?
+    we use it when we have key vlaue and we need to fast lookups.
+
+10. What is LINQ used for?
+    is used to write short , clean , SQL-Like Query directly in c#
+
+11. What is the difference between Where and Select?
+    where is used for filtering , while select is used for projection / transformation 
+
+
+12. What is GroupBy used for?
+    it takes list of data and  organize it into  chunks.
+
+
+13. What are Skip and Take used for?
+    skip ignore the X result , Take grabs the next Y results 
+
+
+Section 4: Databases (SQL)
+
+
+14. What is a primary key?
+    unique identifier for every single row in database.
+
+15. What is a foreign key?
+    A column in one table that links directly to the Primary Key of another table.it make relationships between two tables 
+
+16. What is a one-to-many relationship?
+    one single record in Table A can be linked to multiple records in Table B
+
+
+17. Why do we use JOIN? 
+    atabases separate data into different tables to avoid duplication, we use JOIN to temporarily glue those tables back together in our queries
+
+18. What is the difference between table and entity?
+    A "Table" is the physical grid of rows and columns. An "Entity" is the C# class.
+
+
+Section 5: Professional Practices
+
+19. Why do we use GitHub?
+    To securely back up our code, track the history of every change we make (version control), collaborate seamlessly with other developers, and act as a professional portfolio for employers.
+
+20. What makes a README useful?
+    A useful README acts as the "front door" to your project. It clearly explains what the project is, how to run it, the technologies used.
+
+
+21. Why are multiple commits better than one final commit?
+    Multiple commits tell a clear, chronological story of how the app was built
+
+
+22. Why is professional delivery important?
+    In the real world, writing code that works is only half the job. Formatting code cleanly, organizing folders correctly
