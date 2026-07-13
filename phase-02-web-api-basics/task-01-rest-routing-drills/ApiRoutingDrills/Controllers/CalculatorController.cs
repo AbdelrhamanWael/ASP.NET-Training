@@ -7,6 +7,7 @@ namespace ApiRoutingDrills.Controllers
     [Route("api/[controller]")]
     public class CalculatorController : ControllerBase
     {
+        //Drill 03: Query String Calculator
         [HttpGet("add")]
         public IActionResult Add([FromQuery] decimal a, [FromQuery] decimal b)
         {
@@ -18,6 +19,9 @@ namespace ApiRoutingDrills.Controllers
                 result = a + b
             });
         }
+
+
+        
         
     }
 }

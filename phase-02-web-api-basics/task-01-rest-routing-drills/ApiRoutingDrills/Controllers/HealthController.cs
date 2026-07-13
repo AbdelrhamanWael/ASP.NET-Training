@@ -7,7 +7,7 @@ namespace ApiRoutingDrills.Controllers
     [Route("api/[controller]")]
     public class HealthController : ControllerBase
     {
-        //
+        //Drill 01: Health Check Endpoint
         [HttpGet]
         public IActionResult GetHealth()
         {
@@ -18,6 +18,10 @@ namespace ApiRoutingDrills.Controllers
                 time = DateTime.UtcNow
             });
         }
+
+
+
+        
 
     }
 
