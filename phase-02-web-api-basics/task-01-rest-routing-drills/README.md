@@ -28,5 +28,4 @@ This folder contains the setup for Web API routing drills in ASP.NET Core.
 
 ## 📸 Screenshots & Demos
 > **Note to self:** Replace these placeholders with actual image links before submitting.
-- **Swagger UI Overview:** `[Add Swagger Screenshot Here]`
-- **Postman Testing:** `[Add Postman Screenshot Here]`
+- **Swagger UI Overview:** ![alt text](image.png) ![alt text](image-1.png)

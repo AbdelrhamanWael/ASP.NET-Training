@@ -7,5 +7,5 @@ Developed a Web API to manage products and categories, showcasing relationships 
 
 ## 📸 Screenshots & Demos
 > **Note to self:** Replace these placeholders with actual image links before submitting.
-- **Swagger UI Overview:** `![alt text](image.png)`
-- **Postman Testing:** `![alt text](image-1.png)`
+- **Swagger UI Overview:** ![alt text](image.png)
+- **Postman Testing:** ![alt text](image-1.png)
