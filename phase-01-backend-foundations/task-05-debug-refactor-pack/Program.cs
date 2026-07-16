@@ -6,37 +6,50 @@ namespace Task05
     {
         static void Main(string[] args)
         {
+            Customer customer = new Customer();
             Console.WriteLine("Enter customer name:");
-            string customerName = Console.ReadLine();
+            customer.Name = Console.ReadLine();
             
             Order order = new Order();
 
             Console.WriteLine("Enter product name:");
             order.ProductName = Console.ReadLine();
+            
             Console.WriteLine("Enter product price:");
-            order.ProductPrice = double.Parse(Console.ReadLine());
+            if (!double.TryParse(Console.ReadLine(), out double price) || price < 0)
+            {
+                Console.WriteLine("Invalid price. Please enter a positive number.");
+                return;
+            }
+            order.ProductPrice = price;
+            
             Console.WriteLine("Enter quantity:");
-            order.Quantity = int.Parse(Console.ReadLine());
+            if (!int.TryParse(Console.ReadLine(), out int quantity) || quantity <= 0)
+            {
+                Console.WriteLine("Invalid quantity. Please enter a positive integer.");
+                return;
+            }
+            order.Quantity = quantity;
             
             Console.WriteLine("Enter customer type Regular/Silver/Gold/VIP:");
-            string customerType = Console.ReadLine();
+            customer.Type = Console.ReadLine();
             
             double total = order.ProductPrice * order.Quantity;
             double discount = 0;
             
-            if (customerType == "Regular")
+            if (customer.Type == "Regular")
             {
                 discount = 0;
             }
-            else if (customerType == "Silver")
+            else if (customer.Type == "Silver")
             {
                 discount = total * 0.05;
             }
-            else if (customerType == "Gold")
+            else if (customer.Type == "Gold")
             {
                 discount = total * 0.10;
             }
-            else if (customerType == "VIP")
+            else if (customer.Type == "VIP")
             {
                 discount = total * 0.15;
             }
