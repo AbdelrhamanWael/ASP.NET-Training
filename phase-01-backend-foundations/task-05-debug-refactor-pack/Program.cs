@@ -34,41 +34,21 @@ namespace Task05
             Console.WriteLine("Enter customer type Regular/Silver/Gold/VIP:");
             customer.Type = Console.ReadLine();
             
-            double total = order.ProductPrice * order.Quantity;
-            double discount = 0;
+            OrderCalculator calculator = new OrderCalculator();
             
-            if (customer.Type == "Regular")
-            {
-                discount = 0;
-            }
-            else if (customer.Type == "Silver")
-            {
-                discount = total * 0.05;
-            }
-            else if (customer.Type == "Gold")
-            {
-                discount = total * 0.10;
-            }
-            else if (customer.Type == "VIP")
-            {
-                discount = total * 0.15;
-            }
+            double subtotal = calculator.CalculateSubtotal(order);
+            double discount = calculator.CalculateDiscount(subtotal, customer);
             
-            double afterDiscount = total - discount;
-            double tax = afterDiscount * 0.14;
-            double shipping = 50;
+            double afterDiscount = subtotal - discount;
+            double tax = calculator.CalculateTax(afterDiscount);
+            double shipping = calculator.CalculateShipping(afterDiscount);
             
-            if (afterDiscount >= 1000)
-            {
-                shipping = 0;
-            }
-            
-            double finalTotal = afterDiscount + tax + shipping;
+            double finalTotal = calculator.CalculateFinalTotal(afterDiscount, tax, shipping);
             
             Console.WriteLine("Product: " + order.ProductName);
             Console.WriteLine("Price: " + order.ProductPrice);
             Console.WriteLine("Quantity: " + order.Quantity);
-            Console.WriteLine("Subtotal: " + total);
+            Console.WriteLine("Subtotal: " + subtotal);
             Console.WriteLine("Discount: " + discount);
             Console.WriteLine("Tax: " + tax);
             Console.WriteLine("Shipping: " + shipping);
