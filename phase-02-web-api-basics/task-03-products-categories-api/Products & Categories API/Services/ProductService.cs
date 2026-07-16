@@ -15,27 +15,24 @@ namespace ProductsCategoriesApi.Services
         private static readonly List<Product> _products = new()
         {
             
-            new Product { ProductId = 1, Name = "Smartphone", CategoryId = 1, Price = 699.99m, StockQuantity = 12, IsAvailable = true, SupplierName = "ElectroMax", CreatedAt = DateTime.UtcNow },
-            new Product { ProductId = 2, Name = "Laptop Pro", CategoryId = 1, Price = 1299.50m, StockQuantity = 8, IsAvailable = true, SupplierName = "ElectroMax", CreatedAt = DateTime.UtcNow },
-            new Product { ProductId = 3, Name = "Wireless Headphones", CategoryId = 1, Price = 149.99m, StockQuantity = 25, IsAvailable = true, SupplierName = "SoundSonic", CreatedAt = DateTime.UtcNow },
-            new Product { ProductId = 4, Name = "Smartwatch", CategoryId = 1, Price = 199.00m, StockQuantity = 3, IsAvailable = true, SupplierName = "WearTech", CreatedAt = DateTime.UtcNow },
-            new Product { ProductId = 5, Name = "Bluetooth Speaker", CategoryId = 1, Price = 79.99m, StockQuantity = 0, IsAvailable = false, SupplierName = "SoundSonic", CreatedAt = DateTime.UtcNow },
+            new Product(1, "Smartphone", 1, 699.99m, 12, "ElectroMax"),
+            new Product(2, "Laptop Pro", 1, 1299.50m, 8, "ElectroMax"),
+            new Product(3, "Wireless Headphones", 1, 149.99m, 25, "SoundSonic"),
+            new Product(4, "Smartwatch", 1, 199.00m, 3, "WearTech"),
+            new Product(5, "Bluetooth Speaker", 1, 79.99m, 0, "SoundSonic"),
 
-            
-            new Product { ProductId = 6, Name = "Office Desk", CategoryId = 2, Price = 249.99m, StockQuantity = 5, IsAvailable = true, SupplierName = "WoodCraft", CreatedAt = DateTime.UtcNow },
-            new Product { ProductId = 7, Name = "Ergonomic Chair", CategoryId = 2, Price = 189.50m, StockQuantity = 10, IsAvailable = true, SupplierName = "ComfortSeat", CreatedAt = DateTime.UtcNow },
-            new Product { ProductId = 8, Name = "Bookshelf", CategoryId = 2, Price = 120.00m, StockQuantity = 2, IsAvailable = true, SupplierName = "WoodCraft", CreatedAt = DateTime.UtcNow },
+            new Product(6, "Office Desk", 2, 249.99m, 5, "WoodCraft"),
+            new Product(7, "Ergonomic Chair", 2, 189.50m, 10, "ComfortSeat"),
+            new Product(8, "Bookshelf", 2, 120.00m, 2, "WoodCraft"),
 
-            
-            new Product { ProductId = 9, Name = "Notebook A5", CategoryId = 3, Price = 4.50m, StockQuantity = 150, IsAvailable = true, SupplierName = "PaperCo", CreatedAt = DateTime.UtcNow },
-            new Product { ProductId = 10, Name = "Gel Pens Pack", CategoryId = 3, Price = 8.99m, StockQuantity = 85, IsAvailable = true, SupplierName = "InkLine", CreatedAt = DateTime.UtcNow },
-            new Product { ProductId = 11, Name = "Desk Organizer", CategoryId = 3, Price = 19.99m, StockQuantity = 14, IsAvailable = true, SupplierName = "PaperCo", CreatedAt = DateTime.UtcNow },
-            new Product { ProductId = 12, Name = "Stapler", CategoryId = 3, Price = 6.50m, StockQuantity = 4, IsAvailable = true, SupplierName = "OfficeSupplies", CreatedAt = DateTime.UtcNow },
+            new Product(9, "Notebook A5", 3, 4.50m, 150, "PaperCo"),
+            new Product(10, "Gel Pens Pack", 3, 8.99m, 85, "InkLine"),
+            new Product(11, "Desk Organizer", 3, 19.99m, 14, "PaperCo"),
+            new Product(12, "Stapler", 3, 6.50m, 4, "OfficeSupplies"),
 
-            
-            new Product { ProductId = 13, Name = "Leather Wallet", CategoryId = 4, Price = 45.00m, StockQuantity = 20, IsAvailable = true, SupplierName = "FashionHub", CreatedAt = DateTime.UtcNow },
-            new Product { ProductId = 14, Name = "Backpack", CategoryId = 4, Price = 59.99m, StockQuantity = 15, IsAvailable = true, SupplierName = "TravelStore", CreatedAt = DateTime.UtcNow },
-            new Product { ProductId = 15, Name = "Sunglasses", CategoryId = 4, Price = 120.00m, StockQuantity = 1, IsAvailable = true, SupplierName = "FashionHub", CreatedAt = DateTime.UtcNow }
+            new Product(13, "Leather Wallet", 4, 45.00m, 20, "FashionHub"),
+            new Product(14, "Backpack", 4, 59.99m, 15, "TravelStore"),
+            new Product(15, "Sunglasses", 4, 120.00m, 1, "FashionHub")
         };
         private static int _nextId = 16;
 
@@ -49,17 +46,14 @@ namespace ProductsCategoriesApi.Services
             if (!_categoryService.Exists(request.CategoryId))
                 throw new ArgumentException($"Category ID {request.CategoryId} does not exist or is inactive.");
 
-            var product = new Product
-            {
-                ProductId = _nextId++,
-                Name = request.Name,
-                CategoryId = request.CategoryId,
-                Price = request.Price,
-                StockQuantity = request.StockQuantity,
-                IsAvailable = request.StockQuantity > 0,
-                SupplierName = request.SupplierName,
-                CreatedAt = DateTime.UtcNow
-            };
+            var product = new Product(
+                _nextId++,
+                request.Name,
+                request.CategoryId,
+                request.Price,
+                request.StockQuantity,
+                request.SupplierName
+            );
             _products.Add(product);
             return MapToResponse(product);
         }
@@ -100,12 +94,7 @@ namespace ProductsCategoriesApi.Services
             if (!_categoryService.Exists(request.CategoryId))
                 throw new ArgumentException($"Category ID {request.CategoryId} does not exist.");
 
-            product.Name = request.Name;
-            product.CategoryId = request.CategoryId;
-            product.Price = request.Price;
-            product.StockQuantity = request.StockQuantity;
-            product.IsAvailable = request.StockQuantity > 0;
-            product.SupplierName = request.SupplierName;
+            product.UpdateDetails(request.Name, request.CategoryId, request.Price, request.StockQuantity, request.SupplierName);
 
             return MapToResponse(product);
         }
@@ -115,8 +104,7 @@ namespace ProductsCategoriesApi.Services
             var product = _products.FirstOrDefault(p => p.ProductId == id);
             if (product == null) return null;
 
-            product.StockQuantity = newQuantity;
-            product.IsAvailable = newQuantity > 0;
+            product.UpdateStock(newQuantity);
 
             return MapToResponse(product);
         }
@@ -126,8 +114,7 @@ namespace ProductsCategoriesApi.Services
             var product = _products.FirstOrDefault(p => p.ProductId == id);
             if (product == null) return false;
 
-            product.StockQuantity = 0;
-            product.IsAvailable = false;
+            product.Deactivate();
             return true;
         }
 

@@ -1,0 +1,118 @@
+1. What does REST mean in the context of Web APIs?
+    REST stands for Representational State Transfer. It is an architectural style for designing APIs that use standard HTTP protocols to communicate
+
+2. What is the difference between GET, POST, PUT, PATCH and DELETE?
+    GET: Retrieves data from the server.
+    POST: Creates a new resource on the server.
+    PUT: Updates an existing resource on the server.
+    PATCH: Updates an existing resource on the server.
+    DELETE: Deletes an existing resource from the server.
+
+
+3. When should an API return 200, 201, 204, 400 and 404?
+    200: OK - The request has succeeded.
+    201: Created - The request has been fulfilled and resulted in a new resource.
+    204: No Content - The server has fulfilled the request but there is no content to return.
+    400: Bad Request - The server cannot process the request due to an error (e.g., invalid data).
+    404: Not Found - The server cannot find the requested resource.
+
+
+ ############ Category: Routing & Controllers ############ 
+ 
+4. What is the difference between route parameters and query parameters?
+    Route parameters are placeholders in the URL that represent a specific resource, and are used to identify and retrieve a specific resource. 
+    Query parameters are optional parameters that are appended to the URL after a question mark (?), and are used to filter or sort the results.
+
+5. What is the role of a controller in ASP.NET Core Web API?
+    - Accept incoming HTTP requests.
+    - Direct the raw data to the appropriate route (e.g., `[Route("api/books")]` in `BooksController`).
+    - Bind request payloads to DTOs and handle basic model validation (using `[ApiController]` which automatically validates data annotations like `[Required]`).
+    - Delegate the heavy logical operations to the Service Layer (e.g., passing data to `IProductService`).
+
+    
+
+
+
+#################### Category: DTOs & Validation #################### 
+
+7. Where can validation happen in a Web API?
+    - Model level validation
+    - Controller level validation
+    - Service level validation
+
+#################### Category: Architecture & Patterns#################### 
+
+8. Why should business logic not stay inside the controller?
+    - Keeps controllers clean and focused on HTTP concerns. (e.g., our `ProductsController` only has routing, while `ProductService` handles the list).
+    - Supports code reuse across different clients (UI, mobile, CLI).
+    - Makes it easier to unit test business logic in isolation (as seen in our `ProductsCategoriesApi.Tests`).
+    - Better separation of concerns and modularity.
+
+9. What is Dependency Injection and why is it useful?
+    - Dependency Injection (DI) is a design pattern used to achieve loose coupling. We configured it in `Program.cs` (`builder.Services.AddScoped<IProductService, ProductService>();`) to inject services into our controllers effortlessly.
+    
+
+#################### Category: Tooling & Documentation#################### 
+10. What is Swagger/OpenAPI used for?
+    - Describe API endpoints, request/response models, and authentication methods.
+    - Auto-generate interactive API documentation.
+    - Provide a playground to test API endpoints directly from the browser.
+    - Generate client-side SDK code in various languages.
+
+11. Why do we need Postman if Swagger already exists?
+    - While Swagger provides interactive documentation and basic testing, Postman offers more advanced features such as automated testing, CI/CD integration, team collaboration, and environment management, making it a comprehensive tool for API development and testing.
+
+12. What makes an API response professional and predictable?
+    - Using consistent JSON structure for success and error responses.
+    - Including meaningful HTTP status codes.
+    - Providing clear error messages and codes.
+    - Consistent casing (e.g., camelCase) for JSON properties.
+    - Including pagination info when returning lists.
+    - Omitting sensitive internal data.
+
+#################### Category: Search, Filtering & Pagination #################### 
+13. What is the difference between searching and filtering?
+    - Filtering is used to narrow down the results based on certain criteria.
+    - Searching is used to find specific records in the database.
+
+14. Why is pagination important in APIs?
+    - Prevents overwhelming the client with too much data
+    - Reduces server memory usage
+    - Improves response times
+    - Better user experience
+
+#################### Category: Layered Architecture Comparison #################### 
+15.What is the difference between UI, controller, service and data storage? 
+    - UI: The user interface, which is the part of the application that the user interacts with.
+    - Controller: The controller is the part of the application that handles the logic of the application.
+    - Service: The service is the part of the application that handles the business logic of the application.
+    - Data storage: The data storage is the part of the application that handles the data storage of the application.
+
+16. What should reviewers see in your commit history?
+    - Clean, descriptive commit messages.
+    - Meaningful commit messages.
+
+17. How do you prove that your API works without running it on the reviewer's device?
+    - Postman collections (e.g., the JSON exported in Task 05).
+    - Swagger documentation (accessible via `/swagger`).
+    - Unit tests (e.g., `ProductServiceTests.cs`).
+    - Integration tests.
+
+
+18. How do you investigate an endpoint that returns 500?
+    - Check logs and error messages.
+    - Use debugger or breakpoints to step through the code.
+    - Verify database connection and queries.
+    - Check file paths and permissions if applicable.
+
+19. Why should we not trust request data from users?        
+    - Users can send malicious data that can cause security vulnerabilities.
+    - Users can send invalid data that can cause unexpected behavior.
+    - Users can send malformed data that can cause system crashes.
+    
+    
+
+20. Why is in-memory storage not enough for real applications?
+    - It's lost when the application restarts
+    - Not scalable for multiple users or servers
+    - No data persistence across sessions

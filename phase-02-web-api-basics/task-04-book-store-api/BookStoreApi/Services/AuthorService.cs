@@ -11,8 +11,8 @@ namespace BookStoreApi.Services
     {
         private static readonly List<Author> _authors = new()
         {
-            new Author { AuthorId = 1, FullName = "Robert C. Martin", Country = "USA", BirthDate = new DateTime(1952, 12, 5), CreatedAt = DateTime.UtcNow },
-            new Author { AuthorId = 2, FullName = "Andrew Hunt", Country = "UK", BirthDate = new DateTime(1964, 10, 2), CreatedAt = DateTime.UtcNow }
+            new Author(1, "Robert C. Martin", "USA", new DateTime(1952, 12, 5)),
+            new Author(2, "Andrew Hunt", "UK", new DateTime(1964, 10, 2))
         };
         private static int _nextId = 3;
         private static AuthorResponse MapToResponse(Author a) => new()
@@ -27,14 +27,7 @@ namespace BookStoreApi.Services
         {
             if (_authors.Any(a => a.FullName.Equals(request.FullName, StringComparison.OrdinalIgnoreCase)))
                 throw new ArgumentException("An author with this exact full name already exists.");
-            var author = new Author
-            {
-                AuthorId = _nextId++,
-                FullName = request.FullName,
-                Country = request.Country,
-                BirthDate = request.BirthDate,
-                CreatedAt = DateTime.UtcNow
-            };
+            var author = new Author(_nextId++, request.FullName, request.Country, request.BirthDate);
             _authors.Add(author);
             return MapToResponse(author);
         }

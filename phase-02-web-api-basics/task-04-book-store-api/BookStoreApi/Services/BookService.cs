@@ -20,8 +20,8 @@ namespace BookStoreApi.Services
 
             if (!_books.Any())
             {
-                _books.Add(new Book { BookId = _nextId++, Title = "Clean Code", ISBN = "978-0132350884", PublishedYear = 2008, Price = 42.99m, StockQuantity = 15, AuthorId = 1, CategoryId = 1, IsAvailable = true, CreatedAt = DateTime.UtcNow });
-                _books.Add(new Book {  BookId = _nextId++, Title = "The Pragmatic Programmer", ISBN = "978-0135957059", PublishedYear = 2019, Price = 48.50m, StockQuantity = 7, AuthorId = 2, CategoryId = 1, IsAvailable = true, CreatedAt = DateTime.UtcNow });
+                _books.Add(new Book(_nextId++, "Clean Code", "978-0132350884", 2008, 42.99m, 15, 1, 1));
+                _books.Add(new Book(_nextId++, "The Pragmatic Programmer", "978-0135957059", 2019, 48.50m, 7, 2, 1));
             }
         }
 
@@ -32,19 +32,16 @@ namespace BookStoreApi.Services
             if (!_categoryService.Exists(request.CategoryId)) throw new ArgumentException("The specified CategoryId does not exist or is inactive.");
             if (_books.Any(b => b.ISBN.Equals(request.ISBN, StringComparison.OrdinalIgnoreCase))) throw new ArgumentException("ISBN must be unique across the library catalog.");
 
-            var book = new Book
-            {
-                BookId = _nextId++,
-                Title = request.Title,
-                ISBN = request.ISBN,
-                PublishedYear = request.PublishedYear,
-                Price = request.Price,
-                StockQuantity = request.StockQuantity,
-                AuthorId = request.AuthorId,
-                CategoryId = request.CategoryId,
-                IsAvailable = request.StockQuantity > 0,
-                CreatedAt = DateTime.UtcNow
-            };
+            var book = new Book(
+                _nextId++,
+                request.Title,
+                request.ISBN,
+                request.PublishedYear,
+                request.Price,
+                request.StockQuantity,
+                request.AuthorId,
+                request.CategoryId
+            );
             _books.Add(book);
             return MapToResponse(book);
         }
@@ -81,14 +78,7 @@ namespace BookStoreApi.Services
             if (!_categoryService.Exists(request.CategoryId)) throw new ArgumentException("The specified CategoryId does not exist.");
             if (_books.Any(b => b.ISBN.Equals(request.ISBN, StringComparison.OrdinalIgnoreCase) && b.BookId != id)) throw new ArgumentException("Another book already uses this ISBN.");
 
-            book.Title = request.Title;
-            book.ISBN = request.ISBN;
-            book.PublishedYear = request.PublishedYear;
-            book.Price = request.Price;
-            book.StockQuantity = request.StockQuantity;
-            book.AuthorId = request.AuthorId;
-            book.CategoryId = request.CategoryId;
-            book.IsAvailable = request.StockQuantity > 0;
+            book.UpdateDetails(request.Title, request.ISBN, request.PublishedYear, request.Price, request.StockQuantity, request.AuthorId, request.CategoryId);
 
             return MapToResponse(book);
         }
@@ -99,8 +89,7 @@ namespace BookStoreApi.Services
             if (book == null) return false;
 
             // Soft-delete pattern matching business specs
-            book.StockQuantity = 0;
-            book.IsAvailable = false;
+            book.SoftDelete();
             return true;
         }
 

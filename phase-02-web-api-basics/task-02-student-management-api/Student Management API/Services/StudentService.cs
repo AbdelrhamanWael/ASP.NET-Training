@@ -33,17 +33,14 @@ namespace StudentManagementApi.Services
 
         public async Task<StudentResponse> CreateAsync(CreateStudentRequest request)
         {
-            var student = new Student
-            {
-                FullName = request.FullName,
-                Email = request.Email,
-                PhoneNumber = request.PhoneNumber,
-                TrackName = request.TrackName,
-                GitHubProfileUrl = request.GitHubProfileUrl,
-                LinkedInProfileUrl = request.LinkedInProfileUrl,
-                EnrollmentDate = DateTime.UtcNow,
-                IsActive = true
-            };
+            var student = new Student(
+                request.FullName,
+                request.Email,
+                request.PhoneNumber,
+                request.TrackName,
+                request.GitHubProfileUrl,
+                request.LinkedInProfileUrl
+            );
 
             _context.Students.Add(student);
             await _context.SaveChangesAsync();
@@ -91,12 +88,14 @@ namespace StudentManagementApi.Services
                 return null;
             }
 
-            student.FullName = request.FullName;
-            student.Email = request.Email;
-            student.PhoneNumber = request.PhoneNumber;
-            student.TrackName = request.TrackName;
-            student.GitHubProfileUrl = request.GitHubProfileUrl;
-            student.LinkedInProfileUrl = request.LinkedInProfileUrl;
+            student.UpdateDetails(
+                request.FullName,
+                request.Email,
+                request.PhoneNumber,
+                request.TrackName,
+                request.GitHubProfileUrl,
+                request.LinkedInProfileUrl
+            );
 
             await _context.SaveChangesAsync();
             return MapToResponse(student);
@@ -110,7 +109,7 @@ namespace StudentManagementApi.Services
                 return null;
             }
 
-            student.IsActive = request.IsActive;
+            student.SetStatus(request.IsActive);
             await _context.SaveChangesAsync();
             return MapToResponse(student);
         }

@@ -6,22 +6,15 @@ namespace Products___Categories_API.Services
     public class CategoryService : ICategoryService
     {
         private static readonly List<Category> Categories = new(){
-            new Category { CategoryId = 1, Name = "Electronics", Description = "Gadgets and devices", IsActive = true, CreatedDate = DateTime.UtcNow },
-            new Category { CategoryId = 2, Name = "Furniture", Description = "Home and office furniture", IsActive = true, CreatedDate = DateTime.UtcNow },
-            new Category { CategoryId = 3, Name = "Stationery", Description = "Office and school supplies", IsActive = true, CreatedDate = DateTime.UtcNow },
-            new Category { CategoryId = 4, Name = "Accessories", Description = "Fashion and utility accessories", IsActive = true, CreatedDate = DateTime.UtcNow }
+            new Category(1, "Electronics", "Gadgets and devices", true),
+            new Category(2, "Furniture", "Home and office furniture", true),
+            new Category(3, "Stationery", "Office and school supplies", true),
+            new Category(4, "Accessories", "Fashion and utility accessories", true)
         };
         private static int _nextId = 5;
 
         public Category Create(CreateCategoryRequest request) { 
-            var category = new Category
-            {
-                CategoryId = _nextId++,
-                Name = request.Name,
-                Description = request.Description,
-                IsActive = true,
-                CreatedDate = DateTime.UtcNow
-            };
+            var category = new Category(_nextId++, request.Name, request.Description, true);
             Categories.Add(category);
             return category;
         }

@@ -39,13 +39,12 @@ namespace RefactoredApi.Services
 
         public ProductResponse AddProduct(CreateProductRequest request)
         {
-            var product = new Product
-            {
-                Id = _products.Count > 0 ? _products.Max(p => p.Id) + 1 : 1,
-                Name = request.Name,
-                Price = request.Price,
-                Stock = request.Stock
-            };
+            var product = new Product(
+                _products.Count > 0 ? _products.Max(p => p.Id) + 1 : 1,
+                request.Name,
+                request.Price,
+                request.Stock
+            );
 
             _products.Add(product);
 

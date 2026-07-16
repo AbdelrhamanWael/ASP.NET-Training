@@ -2,13 +2,32 @@ namespace Products___Categories_API.Models
 {
     public class Category
     {
-        public int CategoryId { get; set; }
-        public string Name { get; set; } = string.Empty;
+        public int CategoryId { get; private set; }
+        public string Name { get; private set; } = string.Empty;
+        public string Description { get; private set; } = string.Empty;
+        public bool IsActive { get; private set; }
+        public DateTime CreatedDate { get; private set; }
 
-        public string Description { get; set; } = string.Empty;
+        private Category() { }
 
-        public bool IsActive { get; set; }
+        public Category(int categoryId, string name, string description, bool isActive)
+        {
+            CategoryId = categoryId;
+            Name = name;
+            Description = description;
+            IsActive = isActive;
+            CreatedDate = DateTime.UtcNow;
+        }
 
-        public DateTime CreatedDate { get; set; }
+        public void UpdateDetails(string name, string description)
+        {
+            Name = name;
+            Description = description;
+        }
+
+        public void SetStatus(bool isActive)
+        {
+            IsActive = isActive;
+        }
     }
 }
