@@ -45,14 +45,21 @@ namespace Task05
             
             double finalTotal = calculator.CalculateFinalTotal(afterDiscount, tax, shipping);
             
-            Console.WriteLine("Product: " + order.ProductName);
-            Console.WriteLine("Price: " + order.ProductPrice);
-            Console.WriteLine("Quantity: " + order.Quantity);
-            Console.WriteLine("Subtotal: " + subtotal);
-            Console.WriteLine("Discount: " + discount);
-            Console.WriteLine("Tax: " + tax);
-            Console.WriteLine("Shipping: " + shipping);
-            Console.WriteLine("Final Total: " + finalTotal);
+            Console.WriteLine("\n==============================");
+            Console.WriteLine("        ORDER RECEIPT         ");
+            Console.WriteLine("==============================");
+            Console.WriteLine($"Customer: {customer.Name} ({customer.Type})");
+            Console.WriteLine($"Product:  {order.ProductName}");
+            Console.WriteLine($"Price:    ${order.ProductPrice:F2}");
+            Console.WriteLine($"Quantity: {order.Quantity}");
+            Console.WriteLine("------------------------------");
+            Console.WriteLine($"Subtotal: ${subtotal:F2}");
+            Console.WriteLine($"Discount: ${discount:F2}");
+            Console.WriteLine($"Tax:      ${tax:F2}");
+            Console.WriteLine($"Shipping: ${shipping:F2}");
+            Console.WriteLine("------------------------------");
+            Console.WriteLine($"TOTAL:    ${finalTotal:F2}");
+            Console.WriteLine("==============================\n");
         }
     }
 }
