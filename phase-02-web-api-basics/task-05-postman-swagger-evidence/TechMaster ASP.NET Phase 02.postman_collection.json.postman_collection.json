@@ -1,0 +1,779 @@
+{
+  "info": {
+    "_postman_id": "d4ede53c-3a69-4bff-a796-4cb3a881d62c",
+    "name": "TechMaster ASP.NET Phase 02.postman_collection.json",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "44028470"
+  },
+  "item": [
+    {
+      "name": "TechMaster ASP.NET Phase 02",
+      "item": [
+        {
+          "name": "Student Management API",
+          "item": [
+            {
+              "name": "GET",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5126/api/students",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5126",
+                  "path": [
+                    "api",
+                    "students"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "POST",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5126/api/students",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5126",
+                  "path": [
+                    "api",
+                    "students"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "GET",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5126/api/students/2",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5126",
+                  "path": [
+                    "api",
+                    "students",
+                    "2"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "PUT",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"studentId\": 1,\r\n    \"fullName\": \"Youssef \",\r\n    \"email\": \"youssef@example.com\",\r\n    \"phoneNumber\": \"0101122233\",\r\n    \"trackName\": \"DotNet\",\r\n    \"enrollmentDate\": \"2026-06-15T06:00:10.1766667\",\r\n    \"isActive\": true,\r\n    \"gitHubProfileUrl\": \"https://github.com/youssef\",\r\n    \"linkedInProfileUrl\": \"https://linkedin.com/in/youssef\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5126/api/students/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5126",
+                  "path": [
+                    "api",
+                    "students",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "PATCH",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5126/api/students/1/status",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5126",
+                  "path": [
+                    "api",
+                    "students",
+                    "1",
+                    "status"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "GET",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5126/api/students/stats",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5126",
+                  "path": [
+                    "api",
+                    "students",
+                    "stats"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "DELETE",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5126/api/students/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5126",
+                  "path": [
+                    "api",
+                    "students",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Products & Categories API",
+          "item": [
+            {
+              "name": "GET All Categories",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1998/api/Categories",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1998",
+                  "path": [
+                    "api",
+                    "Categories"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "POST Create Category",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Kitchenware\",\r\n  \"description\": \"Plates, cups, and cooking utensils\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1998/api/Categories",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1998",
+                  "path": [
+                    "api",
+                    "Categories"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "GET All Products (with filters)",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1998/api/Products",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1998",
+                  "path": [
+                    "api",
+                    "Products"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "POST Create Product",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Wireless Mouse\",\r\n  \"categoryId\": 1,\r\n  \"price\": 25.99,\r\n  \"stockQuantity\": 50,\r\n  \"supplierName\": \"LogiTech\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1998/api/Products",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1998",
+                  "path": [
+                    "api",
+                    "Products"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "GET Low Stock Products",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1998/api/Products/low-stock?threshold=5",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1998",
+                  "path": [
+                    "api",
+                    "Products",
+                    "low-stock"
+                  ],
+                  "query": [
+                    {
+                      "key": "threshold",
+                      "value": "5"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "GET Stock Value Report",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1998/api/Products/reports/stock-value",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1998",
+                  "path": [
+                    "api",
+                    "Products",
+                    "reports",
+                    "stock-value"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "GET Product by ID",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1998/api/Products/50",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1998",
+                  "path": [
+                    "api",
+                    "Products",
+                    "50"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "PUT Update Product",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Smartphone Pro Max\",\r\n  \"categoryId\": 2,\r\n  \"price\": 899.99,\r\n  \"stockQuantity\": 10,\r\n  \"supplierName\": \"ElectroMax\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1998/api/Products/5",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1998",
+                  "path": [
+                    "api",
+                    "Products",
+                    "5"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "PATCH Update Stock Quantity",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"newQuantity\": 35\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1998/api/Products/5/stock",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1998",
+                  "path": [
+                    "api",
+                    "Products",
+                    "5",
+                    "stock"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "DELETE Product",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1998/api/Products/5",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1998",
+                  "path": [
+                    "api",
+                    "Products",
+                    "5"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Book Store API",
+          "item": [
+            {
+              "name": "GET List Authors",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1998/api/Author",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1998",
+                  "path": [
+                    "api",
+                    "Author"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "POST Create Author",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"fullName\": \"dasdas\",\r\n  \"country\": \"USA\",\r\n  \"birthDate\": \"1952-12-05T00:00:00Z\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1998/api/Author",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1998",
+                  "path": [
+                    "api",
+                    "Author"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "GET List Categories",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Kitchenware\",\r\n  \"description\": \"Plates, cups, and cooking utensils\"\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:1998/api/Categories",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1998",
+                  "path": [
+                    "api",
+                    "Categories"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "POST Create Category",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Softwareing\",\r\n  \"description\": \"Programming paradigms, clean code practices, and architecture pattern guides.\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1998/api/Categories",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1998",
+                  "path": [
+                    "api",
+                    "Categories"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "GET List Books (Search & Pagination)",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1998/api/Books",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1998",
+                  "path": [
+                    "api",
+                    "Books"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "POST Create Book",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"title\": \"Clean Architecture\",\r\n  \"isbn\": \"978-0134494166\",\r\n  \"publishedYear\": 2017,\r\n  \"price\": 39.99,\r\n  \"stockQuantity\": 25,\r\n  \"authorId\": 1,\r\n  \"categoryId\": 1\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1998/api/Books",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1998",
+                  "path": [
+                    "api",
+                    "Books"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "GET Book Details (Get by ID)",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1998/api/Books/3",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1998",
+                  "path": [
+                    "api",
+                    "Books",
+                    "3"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "PUT Update Book",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"title\": \"Clean Code (Special Edition)\",\r\n  \"isbn\": \"978-0132350884\",\r\n  \"publishedYear\": 2008,\r\n  \"price\": 44.99,\r\n  \"stockQuantity\": 15,\r\n  \"authorId\": 1,\r\n  \"categoryId\": 1\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1998/api/Books/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1998",
+                  "path": [
+                    "api",
+                    "Books",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "DELETE Delete or Mark Unavailable",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1998/api/Books/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1998",
+                  "path": [
+                    "api",
+                    "Books",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "GET Books Report Summary",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1998/api/Books/reports/summary",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1998",
+                  "path": [
+                    "api",
+                    "Books",
+                    "reports",
+                    "summary"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Error Cases",
+      "item": [
+        {
+          "name": "Missing Resource 404",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"message\": \"Book with ID 9999 not found.\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1998/api/Books/9999",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1998",
+              "path": [
+                "api",
+                "Books",
+                "9999"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Invalid Request 400",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Clean Architecture\",\r\n  \"isbn\": \"978-0134494166\",\r\n  \"publishedYear\": 2017,\r\n  \"price\": 39.99,\r\n  \"stockQuantity\": 25,\r\n  \"authorId\": 999, \r\n  \"categoryId\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1998/api/Books",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1998",
+              "path": [
+                "api",
+                "Books"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Error",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"\",\r\n  \"isbn\": \"\",\r\n  \"publishedYear\": 500,\r\n  \"price\": -10.50,\r\n  \"stockQuantity\": -5,\r\n  \"authorId\": 1,\r\n  \"categoryId\": 1",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1998/api/Books",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1998",
+              "path": [
+                "api",
+                "Books"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
