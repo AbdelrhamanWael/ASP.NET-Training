@@ -25,3 +25,8 @@ This folder contains the setup for Web API routing drills in ASP.NET Core.
 - [x] Drill 13: Header Reader Endpoint
 - [x] Drill 14: Status Code Practice
 - [x] Drill 15: Standard Error Shape
+
+## 📸 Screenshots & Demos
+> **Note to self:** Replace these placeholders with actual image links before submitting.
+- **Swagger UI Overview:** `[Add Swagger Screenshot Here]`
+- **Postman Testing:** `[Add Postman Screenshot Here]`
