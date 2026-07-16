@@ -20,5 +20,5 @@ Through this task, I learned how to separate concerns by moving business logic i
 
 ## 📸 Screenshots & Demos
 > **Note to self:** Replace these placeholders with actual image links before submitting.
-- **Swagger UI Overview:** `[Add Swagger Screenshot Here]`
+- **Swagger UI Overview:** `![alt text](image.png)`
 - **Postman Testing:** `[Add Postman Screenshot Here]`

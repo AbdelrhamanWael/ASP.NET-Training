@@ -6,6 +6,6 @@ This folder contains the Student Management API project.
 A robust ASP.NET Core Web API designed for managing student records. It demonstrates CRUD operations, proper model structuring, and standard API practices.
 
 ## 📸 Screenshots & Demos
-> **Note to self:** Replace these placeholders with actual image links before submitting.
-- **Swagger UI Overview:** `[Add Swagger Screenshot Here]`
-- **Postman Testing:** `[Add Postman Screenshot Here]`
+- **Swagger UI Overview:** `![alt text](image-1.png)`
+- **Postman Testing:** ![alt text](image.png)![alt text](image-2.png)
+    

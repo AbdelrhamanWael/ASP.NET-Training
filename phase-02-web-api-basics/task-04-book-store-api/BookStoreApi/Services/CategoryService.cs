@@ -10,8 +10,8 @@ namespace BookStoreApi.Services
     {
         private static readonly List<Category> _categories = new()
         {
-            new Category { CategoryId = 1, Name = "Software Engineering", Description = "Programming paradigms and clean practices", IsActive = true },
-            new Category { CategoryId = 2, Name = "Databases & Architecture", Description = "SQL, NoSQL, and scaling infrastructure", IsActive = true }
+            new Category(1, "Software Engineering", "Programming paradigms and clean practices", true),
+            new Category(2, "Databases & Architecture", "SQL, NoSQL, and scaling infrastructure", true)
         };
         private static int _nextId = 3;
 
@@ -21,13 +21,7 @@ namespace BookStoreApi.Services
             if (_categories.Any(c => c.Name.Equals(request.Name, StringComparison.OrdinalIgnoreCase)))
                 throw new ArgumentException("A category with this name already exists.");
 
-            var category = new Category
-            {
-                CategoryId = _nextId++,
-                Name = request.Name,
-                Description = request.Description,
-                IsActive = true
-            };
+            var category = new Category(_nextId++, request.Name, request.Description, true);
             _categories.Add(category);
             return MapToResponse(category);
         }

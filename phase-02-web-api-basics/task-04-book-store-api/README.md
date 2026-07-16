@@ -7,5 +7,5 @@ An API for managing a bookstore's inventory. Includes endpoints for adding, upda
 
 ## 📸 Screenshots & Demos
 > **Note to self:** Replace these placeholders with actual image links before submitting.
-- **Swagger UI Overview:** `[Add Swagger Screenshot Here]`
-- **Postman Testing:** `[Add Postman Screenshot Here]`
+- **Swagger UI Overview:** `![alt text](image.png)`
+- **Postman Testing:** `[alt text](image-1.png)`
