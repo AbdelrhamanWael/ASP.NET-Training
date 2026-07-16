@@ -1,8 +1,8 @@
 using System;
-class Program
+class OriginalBadCode
 {
- static void Main(string[] args)
- {
+    public static void Run()
+    {
  Console.WriteLine("Enter customer name:");
  string c = Console.ReadLine();
  Console.WriteLine("Enter product name:");
@@ -38,7 +38,7 @@ class Program
  {
  shipping = 0;
  }
- double finalTotal = afterDiscount + tax + shipping
+ double finalTotal = afterDiscount + tax + shipping;
  Console.WriteLine("Product: " + p);
  Console.WriteLine("Price: " + pr);
  Console.WriteLine("Quantity: " + q);

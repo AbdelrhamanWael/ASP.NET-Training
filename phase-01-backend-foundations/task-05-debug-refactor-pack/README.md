@@ -27,3 +27,15 @@ The refactored code is much more **maintainable**, **readable**, and **testable*
 - **Input Validation**: Ensuring user input is valid before processing.
 - **Method Extraction & Single Responsibility Principle**: The `OrderCalculator` focuses strictly on calculations, while models strictly hold data. Each method in the calculator performs exactly one calculation.
 - **Replacing Repeated Conditions**: Streamlined the discount condition using a cleaner `switch` statement instead of repeated `else if`.
+
+## Screenshots
+
+### Before Refactoring (Bad Code & Output)
+*(Take a screenshot of the messy `Main` method in `OriginalBadCode.cs`, and a screenshot of how the old console output looked without formatting, and replace this text with the image)*
+
+![alt text](image-1.png)
+
+### After Refactoring (Clean Code & Output)
+*(Take a screenshot of the clean `OrderCalculator.cs` class, and a screenshot of the new nicely formatted Receipt in the console, and replace this text with the image)*
+![alt text](image-3.png)
+![alt text](image-2.png)
