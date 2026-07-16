@@ -31,11 +31,11 @@ The refactored code is much more **maintainable**, **readable**, and **testable*
 ## Screenshots
 
 ### Before Refactoring (Bad Code & Output)
-*(Take a screenshot of the messy `Main` method in `OriginalBadCode.cs`, and a screenshot of how the old console output looked without formatting, and replace this text with the image)*
 
 ![alt text](image-1.png)
 
 ### After Refactoring (Clean Code & Output)
-*(Take a screenshot of the clean `OrderCalculator.cs` class, and a screenshot of the new nicely formatted Receipt in the console, and replace this text with the image)*
+<img width="897" height="951" alt="image" src="https://github.com/user-attachments/assets/236ef257-c0f1-4ce7-a4a5-4db1228b9fa3" />
+
 ![alt text](image-3.png)
 ![alt text](image-2.png)
