@@ -4,6 +4,7 @@ using EFCoreDrillsApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCoreDrillsApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260723091210_AddAuditFields")]
+    partial class AddAuditFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -362,53 +365,6 @@ namespace EFCoreDrillsApi.Migrations
                         .IsUnique();
 
                     b.ToTable("PaymentSummaries");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            EnrollmentId = 1,
-                            PaymentStatus = "PartiallyPaid",
-                            RemainingAmount = 500m,
-                            TotalPaid = 500m,
-                            TotalRequired = 1000m
-                        },
-                        new
-                        {
-                            Id = 2,
-                            EnrollmentId = 2,
-                            PaymentStatus = "Paid",
-                            RemainingAmount = 0m,
-                            TotalPaid = 1000m,
-                            TotalRequired = 1000m
-                        },
-                        new
-                        {
-                            Id = 3,
-                            EnrollmentId = 3,
-                            PaymentStatus = "Paid",
-                            RemainingAmount = 0m,
-                            TotalPaid = 1200m,
-                            TotalRequired = 1200m
-                        },
-                        new
-                        {
-                            Id = 4,
-                            EnrollmentId = 4,
-                            PaymentStatus = "Pending",
-                            RemainingAmount = 1200m,
-                            TotalPaid = 0m,
-                            TotalRequired = 1200m
-                        },
-                        new
-                        {
-                            Id = 5,
-                            EnrollmentId = 5,
-                            PaymentStatus = "PartiallyPaid",
-                            RemainingAmount = 600m,
-                            TotalPaid = 200m,
-                            TotalRequired = 800m
-                        });
                 });
 
             modelBuilder.Entity("EFCoreDrillsApi.Models.Enrollment", b =>

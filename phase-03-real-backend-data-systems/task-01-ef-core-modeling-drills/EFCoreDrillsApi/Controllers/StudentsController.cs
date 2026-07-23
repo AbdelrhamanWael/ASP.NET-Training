@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EFCoreDrillsApi.Data;
+using EFCoreDrillsApi.DTOs;
 
 
 namespace EFCoreDrillsApi.Controllers{
@@ -81,6 +82,70 @@ namespace EFCoreDrillsApi.Controllers{
 
             return Ok(response);
         }
+
+        [HttpGet("list")]
+
+        public async Task<IActionResult> GetStudentList()
+        {
+            var students = await _context.Students
+                .Where(s => !s.IsDeleted)
+                .Select(s => new StudentListItemDto
+                {
+                    Id = s.Id,
+                    FullName = s.FullName,
+                    Email = s.Email
+                })
+                .ToListAsync();
+
+            return Ok(students);
+
+        }
+        [HttpGet("paged")]
+        public async Task<IActionResult> GetPagedStudents([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        {
+            // 1. Validation Rules
+            if (pageNumber <= 0)
+            {
+                return BadRequest("Page number must be greater than 0.");
+            }
+            if (pageSize < 1 || pageSize > 50)
+            {
+                return BadRequest("Page size must be between 1 and 50.");
+            }
+
+            var query = _context.Students.Where(s => !s.IsDeleted);
+
+            // 2. Count Total Records (before applying Skip/Take)
+            var totalCount = await query.CountAsync();
+
+            // 3. Calculate Skip
+            var skip = (pageNumber - 1) * pageSize;
+
+            // 4. Fetch Paginated Data
+            var items = await query
+                .Skip(skip)
+                .Take(pageSize)
+                .Select(s => new StudentListItemDto
+                {
+                    Id = s.Id,
+                    FullName = s.FullName,
+                    Email = s.Email
+                })
+                .ToListAsync();
+
+            // 5. Assemble Result
+            var result = new PaginationResult<StudentListItemDto>
+            {
+                Items = items,
+                TotalCount = totalCount,
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
+
+            return Ok(result);
+        }
+            
     }
+
 
 }

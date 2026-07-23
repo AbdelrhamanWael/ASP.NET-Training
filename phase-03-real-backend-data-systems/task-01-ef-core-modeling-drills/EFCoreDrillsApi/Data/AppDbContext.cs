@@ -13,17 +13,17 @@ namespace EFCoreDrillsApi.Data
         public DbSet<Instructor> Instructors => Set<Instructor>();
         public DbSet<TrainingTrack> TrainingTracks => Set<TrainingTrack>();
 
-        public DbSet<Enrollment> Enrollments => Set<Enrollment>(); 
+        public DbSet<Enrollment> Enrollments => Set<Enrollment>();
         public DbSet<PaymentSummary> PaymentSummaries => Set<PaymentSummary>();
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            
+
             // one to one
             modelBuilder.Entity<Student>()
-                .HasOne(s=> s.Profile)
+                .HasOne(s => s.Profile)
                 .WithOne(sp => sp.Student)
                 .HasForeignKey<StudentProfile>(sp => sp.StudentId);
             modelBuilder.Entity<StudentProfile>().HasKey(sp => sp.StudentId);
@@ -35,7 +35,7 @@ namespace EFCoreDrillsApi.Data
                 .WithOne(t => t.Instructor)
                 .HasForeignKey(t => t.InstructorId)
                 .IsRequired(); //// Prevents saving a track with a missing instructor
-            
+
             // Many-to-Many
             modelBuilder.Entity<Enrollment>()
                 .HasOne(e => e.Student)
@@ -47,7 +47,7 @@ namespace EFCoreDrillsApi.Data
                 .WithMany(t => t.Enrollments)
                 .HasForeignKey(e => e.TrainingTrackId);
 
-                // One-to-One Configuration for Drill 05
+            // One-to-One Configuration for Drill 05
             modelBuilder.Entity<Enrollment>()
                 .HasOne(e => e.PaymentSummary)
                 .WithOne(p => p.Enrollment)
@@ -56,10 +56,10 @@ namespace EFCoreDrillsApi.Data
             // Enforce decimal precision for money values
             modelBuilder.Entity<PaymentSummary>()
                 .Property(p => p.TotalRequired).HasColumnType("decimal(18,2)");
-                
+
             modelBuilder.Entity<PaymentSummary>()
                 .Property(p => p.TotalPaid).HasColumnType("decimal(18,2)");
-                
+
             modelBuilder.Entity<PaymentSummary>()
                 .Property(p => p.RemainingAmount).HasColumnType("decimal(18,2)");
 
@@ -67,7 +67,7 @@ namespace EFCoreDrillsApi.Data
             modelBuilder.Entity<PaymentSummary>()
                 .Property(p => p.PaymentStatus)
                 .HasConversion<string>();
-                
+
             // Seed 2 Instructors
             modelBuilder.Entity<Instructor>().HasData(
                 new Instructor { Id = 1, Name = "Ahmed Ali" },
@@ -107,6 +107,38 @@ namespace EFCoreDrillsApi.Data
                 new Enrollment { Id = 4, StudentId = 4, TrainingTrackId = 2, Status = "Active", EnrollmentDate = new DateTime(2025, 2, 3), FinalGrade = 0 },
                 new Enrollment { Id = 5, StudentId = 5, TrainingTrackId = 3, Status = "Dropped", EnrollmentDate = new DateTime(2024, 10, 1), FinalGrade = 0 }
             );
+
+            // Seed 5 PaymentSummaries
+            modelBuilder.Entity<PaymentSummary>().HasData(
+                new PaymentSummary { Id = 1, EnrollmentId = 1, TotalRequired = 1000m, TotalPaid = 500m, RemainingAmount = 500m, PaymentStatus = PaymentStatus.PartiallyPaid },
+                new PaymentSummary { Id = 2, EnrollmentId = 2, TotalRequired = 1000m, TotalPaid = 1000m, RemainingAmount = 0m, PaymentStatus = PaymentStatus.Paid },
+                new PaymentSummary { Id = 3, EnrollmentId = 3, TotalRequired = 1200m, TotalPaid = 1200m, RemainingAmount = 0m, PaymentStatus = PaymentStatus.Paid },
+                new PaymentSummary { Id = 4, EnrollmentId = 4, TotalRequired = 1200m, TotalPaid = 0m, RemainingAmount = 1200m, PaymentStatus = PaymentStatus.Pending },
+                new PaymentSummary { Id = 5, EnrollmentId = 5, TotalRequired = 800m, TotalPaid = 200m, RemainingAmount = 600m, PaymentStatus = PaymentStatus.PartiallyPaid }
+            );
+        }
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            var entries = ChangeTracker.Entries<IAuditable>();
+
+            foreach (var entry in entries)
+            {
+                if (entry.State == EntityState.Added)
+                {
+                    // Set during creation using UTC time
+                    entry.Entity.CreatedAt = DateTime.UtcNow;
+                }
+                else if (entry.State == EntityState.Modified)
+                {
+                    // Changes during update using UTC time
+                    entry.Entity.UpdatedAt = DateTime.UtcNow;
+
+                    // Prevent accidental overwriting of CreatedAt
+                    entry.Property(e => e.CreatedAt).IsModified = false;
+                }
+            }
+
+            return base.SaveChangesAsync(cancellationToken);
         }
     }
 }

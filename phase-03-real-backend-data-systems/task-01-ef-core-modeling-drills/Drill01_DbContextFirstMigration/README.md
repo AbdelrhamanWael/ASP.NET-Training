@@ -2,11 +2,11 @@
 
 ## Database Table and Migration Files
 
-### Migration Files
-![Migration Files](image.png) 
+###  Database Tables
+![Database Tables](image.png)
 
-### Database Table
-![Database Table](image-1.png)
+### Migration Files
+![Migration Files](image-2.png)
 
 ## Concepts Explained
 
